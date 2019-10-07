@@ -1,0 +1,47 @@
+#ajuda {
+   font-size: 80%;
+   position: relative;
+}
+#ajuda ul{
+   padding-left: 15px;
+}
+#ajudaBotao {
+   position: relative;
+   float: right;
+   top: -43px;
+   right: 15px;
+   cursor: help;
+}
+#rodape table{
+   border: 0;
+   width: 100%;
+   text-align: center;
+}
+
+#cabecario{
+   text-align: center;
+}
+#cabecario img{
+   height: 125px;
+   width: auto;
+}
+#cabecario div{
+   width: auto;
+   margin: 0 25px 0;
+}
+
+.escondido{
+	background-color: lightgray;
+	display: none;
+}
+#mais{
+	cursor: pointer;
+	text-align: center;
+	background-color: #f9f9f9;
+}
+.mais::before {
+	content: '▼'
+}
+.menos::before {
+	content: '▲'
+}
