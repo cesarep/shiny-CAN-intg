@@ -45,23 +45,22 @@ shinyServer(function(input, output, session) {
       rv$val <- val
    })
    
-   output$tabelak <- renderUI({
-      rv$tabela # in order to re-render when input$mean changes
-      tagList(
-         withMathJax(),
-         withMathJax(tableOutput("tabela"))
-      )
-   })
-   
    observeEvent(rv$tabela, {
       tabela = rv$tabela
+      if(nrow(tabela)>10)
+         modTab = list(pos=list(0, nrow(tabela)), 
+                       command=c("<tr><th>\\(x\\)</th><th>\\(f(x)\\)</th></tr>", 
+                                 paste0("<tr id='tabexp'><td align='center' colspan='", ncol(tabela),"'></td></tr>")
+                       )
+         )
+      else
+         modTab = list(pos=list(0), command="<tr><th>\\(x\\)</th><th>\\(f(x)\\)</th></tr>")
       output$tabela <- renderTable({
          tabela
-      }, align='c', digits = 4, striped = T, include.colnames=FALSE, 
-         add.to.row = list(pos = list(0), command = "<tr><th>\\(x\\)</th><th>\\(f(x)\\)</th></tr>"))
+      }, align='c', digits = 4, striped = T, include.colnames=FALSE, add.to.row = modTab)
+      
       output$resultado <- renderUI({
          sprintf('$$ \\int_{%.2f}^{%.2f} \\! f(x) \\, \\mathrm{d}x \\approx %.3f $$', input$a, input$b, rv$val)})
-      withMathJax()
    })
    
    

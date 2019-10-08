@@ -1,15 +1,18 @@
 library(shiny)
 library(shinyjs)
 
+source('katex.r', encoding = 'utf-8')
+
 shinyUI(fluidPage(
-   withMathJax(),
+   KaTeX(),
    titlePanel("Integração Numérica"),
    sidebarLayout(
       sidebarPanel(
-         textInput('fx', 'Função', '2*exp(-x^2)-1'),
-         includeCSS("estilo.css"),
-         includeHTML('ajuda.htm'),
-         includeScript('script.js'),
+         textInput('fx', '\\(f(x)\\)', '2*exp(-x^2)-1'),
+         includeCSS("www/estilo.css"),
+         includeHTML('www/ajuda.htm'),
+         includeScript('www/tabela.js'),
+         includeCSS('www/tabela.css'),
          useShinyjs(),
          selectInput('metodo', 'Método', 
             list('Trapézio' = 1,
@@ -25,7 +28,7 @@ shinyUI(fluidPage(
       mainPanel(
          tabsetPanel(
             tabPanel("Resultados",
-                     uiOutput('tabelak'),
+                     uiOutput('tabela'),
                      uiOutput('resultado'),
                      tags$style(type='text/css', "#tabela table {margin: 10px auto;}")
             ),
