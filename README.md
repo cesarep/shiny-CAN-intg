@@ -2,5 +2,5 @@
 
 ```r
 library(shiny)
-runGitHub("shiny_CAN_intg", "cesarep")
+runGitHub("shiny-CAN-intg", "cesarep")
 ```
